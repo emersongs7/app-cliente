@@ -1,0 +1,38 @@
+<html>
+<div class="container-fluid">
+
+    
+    <div class="alert alert-danger" *ngIf="formularioCliente.submitted && formularioCliente.value.nome == ''" role="alert" >
+      Campo Nome é Obrigatório
+    </div>
+    
+	<div class="alert alert-danger" *ngIf="formularioCliente.submitted && formularioCliente.value.limite == ''" role="alert" >
+      Campo Limite é Obrigatório
+	</div>
+
+  <div class="alert alert-danger" *ngIf="formularioCliente.submitted && formularioCliente.value.risco == ''" role="alert">
+      Campo Risco é Obrigatório
+  </div>
+
+    <form #formularioCliente="ngForm" (ngSubmit)="salvar(formularioCliente)">
+        <div>
+          <label>Nome do Cliente</label>
+          <input type="text" class="form-control" name="nome"  placeholder="Nome do Cliente" ngModel required>
+         
+        </div>
+        <div>
+          <label>Limite de Crédito</label>
+          <input type="text" class="form-control" required name="limite" placeholder="Limite de Crédito" ngModel>
+        </div>
+        <div>
+            <label>Risco</label>
+             <select class="custom-select" #risk (change)="calculoTaxa(t.value)" name="risk" ngModel required>              
+                <option *ngFor="let risco of riscos" [value]="risco">{{risco}}</option>
+            </select>
+        </div>
+        <button type="submit">Enviar</button>
+      </form>
+  </div>
+ </html> 
+
+
